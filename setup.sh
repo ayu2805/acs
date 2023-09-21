@@ -93,14 +93,23 @@ sudo sed -i 's/^#greeter-setup-script=/greeter-setup-script=\/usr\/bin\/numlockx
 sudo sed -i 's/^\#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
 sudo sed -i 's/^webkit_theme\s*=.*/webkit_theme        = litarvan/' /etc/lightdm/lightdm-webkit2-greeter.conf
 
+
 echo ""
-read -r -p "Do you want to install WhiteSur icon theme? [y/N] " response
+read -r -p "Do you want to install WhiteSur gtk and icon theme? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+    
+    git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git --depth=1
+    cd WhiteSur-gtk-theme/
+    sudo ./install.sh -o normal -c Dark -i arch
+    ./install.sh -o normal -c Dark -l -i arch
+    cd ..
+    rm -rf WhiteSur-gtk-theme/
+
     git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git --depth=1
-    cd WhiteSur-icon-theme
+    cd WhiteSur-icon-theme/
     sudo ./install.sh -a
     cd ..
-    rm -rf WhiteSur-icon-theme
+    rm -rf WhiteSur-icon-theme/
 fi
 
 echo ""
