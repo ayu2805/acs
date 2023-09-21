@@ -85,10 +85,13 @@ echo -e "VISUAL=nvim\nEDITOR=nvim\nQT_QPA_PLATFORMTHEME=qt6ct" | sudo tee /etc/e
 grep -qF "set number" /usr/share/nvim/sysinit.vim || echo "set number" | sudo tee -a /usr/share/nvim/sysinit.vim > /dev/null
 
 echo ""
-sudo pacman -Syu --needed --noconfirm numlockx lightdm-gtk-greeter
+echo "Installing Lightdm..."
+echo ""
+yay -Syu --needed --noconfirm lightdm numlockx lightdm-webkit-theme-litarvan 
 sudo systemctl enable lightdm
-sudo cp lightdm-gtk-greeter.conf /etc/lightdm
 sudo sed -i 's/^#greeter-setup-script=/greeter-setup-script=\/usr\/bin\/numlockx\ on/' /etc/lightdm/lightdm.conf
+sudo sed -i 's/^\#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
+sudo sed -i 's/^webkit_theme\s*=.*/webkit_theme        = litarvan/' /etc/lightdm/lightdm-webkit2-greeter.conf
 
 echo ""
 read -r -p "Do you want to install WhiteSur icon theme? [y/N] " response
