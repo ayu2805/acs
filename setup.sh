@@ -145,9 +145,9 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-read -r -p "Do you want to install VS Code(from AUR)? [y/N] " response
+read -r -p "Do you want to install VSCodium(from AUR)? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    yay -Syu --needed --noconfirm visual-studio-code-bin
+    yay -Syu --needed --noconfirm vscodium-bin
 fi
 
 echo ""
