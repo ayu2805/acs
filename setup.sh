@@ -100,8 +100,8 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     
     git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git --depth=1
     cd WhiteSur-gtk-theme/
-    sudo ./install.sh -o normal -c Dark -i arch
-    ./install.sh -o normal -c Dark -l -i arch
+    sudo ./install.sh -o normal -i arch
+    ./install.sh -o normal -l -i arch
     cd ..
     rm -rf WhiteSur-gtk-theme/
 
