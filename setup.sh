@@ -48,6 +48,7 @@ fi
 
 echo ""
 sudo pacman -Syu --needed --noconfirm - < tpkg
+sudo systemctl enable touchegg
 sudo systemctl enable --now ufw
 sudo ufw enable
 sudo systemctl enable --now cups
