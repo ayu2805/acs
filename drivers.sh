@@ -15,5 +15,5 @@ fi
 echo ""
 read -r -p "Do you want to install both Nvidia Tools? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -Syu --needed --noconfirm nvidia-settings nvidia-prime opencl-nvidia xorg-server-devel #NVIDIA
+    sudo pacman -Syu --needed --noconfirm linux-headers nvidia nvidia-utils nvidia-settings nvidia-prime opencl-nvidia xorg-server-devel #NVIDIA
 fi
