@@ -88,7 +88,7 @@ grep -qF "set number" /usr/share/nvim/sysinit.vim || echo "set number" | sudo te
 echo ""
 echo "Installing Lightdm..."
 echo ""
-yay -Syu --needed --noconfirm lightdm numlockx lightdm-webkit-theme-litarvan 
+sudo pacman -Syu --needed --noconfirm lightdm numlockx lightdm-webkit-theme-litarvan 
 sudo systemctl enable lightdm
 sudo sed -i 's/^#greeter-setup-script=/greeter-setup-script=\/usr\/bin\/numlockx\ on/' /etc/lightdm/lightdm.conf
 sudo sed -i 's/^\#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/' /etc/lightdm/lightdm.conf
