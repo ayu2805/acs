@@ -146,9 +146,11 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     sudo systemctl enable NetworkManager-dispatcher.service
     sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
     sudo tlp start
-
+    
+    echo ""
     git clone https://github.com/AdnanHodzic/auto-cpufreq.git
     cd auto-cpufreq && sudo ./auto-cpufreq-installer
+    sudo rm -rf auto-cpufreq/
     sudo auto-cpufreq --install
 fi
 
