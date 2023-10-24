@@ -50,6 +50,7 @@ python-pyqt6
 python-pysmbc
 redshift
 sshfs
+system-config-printer
 touchegg
 ufw
 usbutils
