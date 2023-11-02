@@ -36,14 +36,14 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-if [ "$(pactree -r yay)" ]; then
+if [ "$(pactree -r yay-bin)" ]; then
     echo "Yay is already installed"
 else
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
+    git clone https://aur.archlinux.org/yay-bin.git
+    cd yay-bin
     yes | makepkg -si
     cd ..
-    rm -rf yay
+    rm -rf yay-bin
 fi
 
 echo ""
@@ -83,7 +83,7 @@ fi
 sudo sed -i 's/Logo=1/Logo=0/' /etc/libreoffice/sofficerc
 
 echo -e "VISUAL=nvim\nEDITOR=nvim\nQT_QPA_PLATFORMTHEME=qt6ct" | sudo tee /etc/environment > /dev/null
-grep -qF "set number" /usr/share/nvim/sysinit.vim || echo "set number" | sudo tee -a /usr/share/nvim/sysinit.vim > /dev/null
+grep -qF "set number" /etc/xdg/nvim/sysinit.vim || echo "set number" | sudo tee -a /etc/xdg/nvim/sysinit.vim > /dev/null
 
 echo ""
 echo "Installing Lightdm..."
@@ -139,20 +139,16 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
 fi
 
 echo ""
-read -r -p "Do you want TLP and auto-cpufreq? [y/N] " response
+read -r -p "Do you want to install TLP? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -S tlp tlp-rdw
+    echo ""
+    sudo pacman -Syu --needed --noconfirm tlp tlp-rdw smartmontools ethtool gnome-power-manager
     sudo systemctl enable tlp.service
     sudo systemctl enable NetworkManager-dispatcher.service
     sudo systemctl mask systemd-rfkill.service systemd-rfkill.socket
     sudo tlp start
-    
-    echo ""
-    git clone https://github.com/AdnanHodzic/auto-cpufreq.git
-    cd auto-cpufreq && sudo ./auto-cpufreq-installer
-    sudo rm -rf auto-cpufreq/
-    sudo auto-cpufreq --install
 fi
+
 
 echo ""
 read -r -p "Do you want Bluetooth Service? [y/N] " response
