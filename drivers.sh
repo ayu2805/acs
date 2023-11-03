@@ -15,5 +15,6 @@ fi
 echo ""
 read -r -p "Do you want to install Nvidia tools? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    sudo pacman -Syu --needed --noconfirm nvidia-utils nvidia-settings nvidia-prime opencl-nvidia #NVIDIA
+    sudo pacman -Syu --needed --noconfirm nvidia nvidia-utils nvidia-settings nvidia-prime opencl-nvidia #NVIDIA
+    sudo systemctl enable nvidia-suspend.service nvidia-hibernate.service nvidia-resume.service
 fi
